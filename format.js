@@ -11,7 +11,7 @@ const format = (data) => {
 
       timeblocks.forEach(block => {
         const created = Date.now()
-        const clientId = block[0].Wp_Klant_ID.replace('%dot','.')
+        const clientId = block[0].Wp_Klant_ID
         const dow = block[0].Wp_Dag === 7 ? 0 : block[0].Wp_Dag
         const startTime = (block[0].Wp_Uur[0] - 1) * 30 / 60
         const endTime = block[0].Wp_Uur[1] ? block[0].Wp_Uur[1] * 30 / 60 : block[0].Wp_Uur[0] * 30 / 60

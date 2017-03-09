@@ -13,8 +13,11 @@ const newFilename = process.argv[2].replace('.json', '_(copy).json')
 fs.readFile(filename, 'utf8', (err, data) => {
   if (err) throw err
   data = JSON.parse(data)
-  // group-array doesn't like dots in property names, so replace them
-  data.forEach(obj => { obj.Wp_Klant_ID = obj.Wp_Klant_ID.replace('.','%dot') })
+  // remove '.' from client/freelancer name
+  data.forEach(obj => {
+    obj.Wp_Klant_ID = obj.Wp_Klant_ID.replace('.','')
+    obj.Wp_Mdw_ID = obj.Wp_Mdw_ID.replace('.','')
+  })
   // sort data by client, day and hour
   data = groupArray(data, 'Wp_Klant_ID', 'Wp_Dag', 'Wp_Uur')
   // group consecutive hours into blocks
