@@ -15,8 +15,8 @@ const format = (data) => {
         const dow = block[0].Wp_Dag === 7 ? 0 : block[0].Wp_Dag
         const startTime = (block[0].Wp_Uur[0] - 1) * 30 / 60
         const endTime = block[0].Wp_Uur[1] ? block[0].Wp_Uur[1] * 30 / 60 : block[0].Wp_Uur[0] * 30 / 60
-        const start = moment.duration(startTime, 'hours').format('h:mm')
-        const end = moment.duration(endTime, 'hours').format('h:mm')
+        const start = startTime === 0 ? "00:00" : moment.duration(startTime, 'hours').format('h:mm')
+        const end = endTime === 24 ? "23:59" : moment.duration(endTime, 'hours').format('h:mm')
         const recurringEvery = block[0].Wp_Pct === 50 ? 2 : 1
         const base = moment('2017-01-01')
         let startDate = base.add(dow, 'day').valueOf()
